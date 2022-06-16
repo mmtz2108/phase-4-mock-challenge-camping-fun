@@ -12,13 +12,13 @@ class SignupsController < ApplicationController
 
     def create
         signup = Signup.create!(signup_params)
-        render json: signup
+        render json: signup.activity, status: 201
     end
 
     private
 
     def invalid
-        render json: { error: ['validation errors']}
+        render json: { errors: errorobj.record.errors.full_messages} , status: 422
     end
 
     def signup_params

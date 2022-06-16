@@ -14,6 +14,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :no_record
     def destroy
         activity = Activity.find(params[:id])
         activity.destroy!
+        render json: status: 204
     end
 
     private
